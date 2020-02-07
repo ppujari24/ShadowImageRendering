@@ -2,15 +2,16 @@ import Foundation
 import UIKit
 
 
-public enum Edge {
-    case top
-    case bottom
-    case all
-}
-
-
-
+/// The metrics used to define a Shadow.
 public struct ShadowMetric {
+    /// The edges to which shadows are drawn.
+    public enum Edge {
+        case top
+        case bottom
+        case all
+    }
+
+    
     let offset: CGSize
     let blur: CGFloat
     let spread: CGFloat
@@ -100,13 +101,5 @@ public struct ShadowMetric {
         let capInsetLeft = edge == .all ? blur + spread : 1
         let capInsets = UIEdgeInsets(top: capInsetTop, left: capInsetLeft, bottom: capInsetBottom, right: capInsetRight)
         return image.resizableImage(withCapInsets: capInsets, resizingMode: .stretch)
-    }
-    
-    
-    /// Returns the maximum `CGSize` comparing them according to their heights.
-    /// - Parameter offset1: CGSize 1 to compare
-    /// - Parameter offset2: CGSize 2 to compare
-    private func maxHeight(_ offset1: CGSize, _ offset2: CGSize) -> CGSize {
-        return offset1.height > offset2.height ? offset1 : offset2
     }
 }
